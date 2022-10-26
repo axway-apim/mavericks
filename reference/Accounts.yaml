@@ -59,11 +59,11 @@ components:
             - savings
             - investment
         accountBalance:
-          type: number
           x-faker:
             finance.amount:
               min: 1000
-              max: 99999 
+              max: 99999
+          type: string
   responses:
     account:
       description: Single account
