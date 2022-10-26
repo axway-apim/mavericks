@@ -65,6 +65,15 @@ components:
               max: 999999
               precision: 0.01
           type: number
+    accounts:
+      title: accounts
+      x-stoplight:
+        id: rg74ao67aahxt
+      type: object
+      properties:
+        id:
+          type: string
+          x-faker: datatype.uuid
   responses:
     account:
       description: Single account
@@ -79,5 +88,5 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/account'
+              $ref: '#/components/schemas/accounts'
 x-extension-1: null
