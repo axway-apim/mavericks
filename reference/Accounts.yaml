@@ -60,10 +60,7 @@ components:
             - investment
         balance:
           type: number
-          x-faker:
-            finance.amount:
-              - min: 1000
-              - max: 99999
+          x-faker: finance.amount
   responses:
     account:
       description: Single account
