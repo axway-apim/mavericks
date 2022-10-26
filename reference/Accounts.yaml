@@ -62,8 +62,8 @@ components:
           type: number
           x-faker:
             finance.amount:
-              min: 1000
-              max: 99999
+              - min: 1000
+              - max: 99999
   responses:
     account:
       description: Single account
