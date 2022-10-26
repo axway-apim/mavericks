@@ -84,6 +84,9 @@ components:
         application/json:
           schema:
             type: array
+            x-faker:
+              array:
+                length: 5
             items:
               $ref: '#/components/schemas/accounts'
 x-extension-1: null
