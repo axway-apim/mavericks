@@ -54,12 +54,6 @@ components:
           x-faker: finance.account
         type:
           type: string
-          x-faker:
-            helpers:
-              arrayElement:
-                - checking
-                - savings
-                - investment
           enum:
             - checking
             - savings
