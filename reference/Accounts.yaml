@@ -60,10 +60,10 @@ components:
             - investment
         accountBalance:
           x-faker:
-            finance.amount:
+            datatype.number:
               min: 1000
               max: 99999
-          type: string
+          type: number
   responses:
     account:
       description: Single account
