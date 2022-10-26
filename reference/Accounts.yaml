@@ -1,0 +1,87 @@
+openapi: 3.0.0
+x-stoplight:
+  id: p7gyxfh4h5sfi
+info:
+  title: Accounts
+  version: '1.0'
+  description: Manage account at Griffin Bank
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/account/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/account'
+      operationId: get-account-id
+      description: Get account by accountId
+  '/account/{customerId}':
+    parameters:
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/accounts'
+      operationId: get-account-customerId
+      description: Get all accounts for customer by customerId
+components:
+  schemas:
+    account:
+      title: account
+      x-stoplight:
+        id: amcrlf2grl7ub
+      type: object
+      properties:
+        id:
+          type: string
+          x-faker:
+            routingNumber
+        customerId:
+          type: string
+          x-faker:
+            finance.account
+        type:
+          type: string
+          x-faker:
+            helpers:
+              arrayElement: ['checking', 'savings', 'investment']
+          enum:
+            - checking
+            - savings
+            - investment
+        balance:
+          type: number
+          x-faker:
+            finance.amount:
+              min: 100
+              max: 99999
+  responses:
+    account:
+      description: Single account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/account'
+    accounts:
+      description: Array of accounts
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/account'
+x-extension-1: null
