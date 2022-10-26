@@ -69,11 +69,8 @@ components:
       title: accounts
       x-stoplight:
         id: rg74ao67aahxt
-      type: object
-      properties:
-        id:
-          type: string
-          x-faker: datatype.uuid
+      type: string
+      x-faker: datatype.uuid
   responses:
     account:
       description: Single account
