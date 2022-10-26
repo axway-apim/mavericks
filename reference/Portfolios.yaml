@@ -38,23 +38,26 @@ paths:
 components:
   schemas:
     portfolio:
-      title: Portfolio
+      title: portfolio
       x-stoplight:
-        id: tvc2h0gytxkhd
+        id: pd9q7wvjr2rrw
       type: object
       properties:
         id:
           type: string
+        customerId:
+          type: string
+        accountType:
+          type: string
+        accountBalance:
+          type: string
     portfolios:
-      title: Portfolios
+      title: portfolios
       x-stoplight:
-        id: fp8aap4r8w4l5
-      type: object
-      properties:
-        id:
-          type: array
-          items:
-            type: string
+        id: jx9c3eo5f9opy
+      type: array
+      items:
+        type: string
   responses:
     portfolio:
       description: Example response
