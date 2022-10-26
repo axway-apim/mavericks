@@ -48,7 +48,7 @@ components:
       properties:
         id:
           type: string
-          x-faker: routingNumber
+          x-faker: datatype.uuid
         customerId:
           type: string
           x-faker: finance.account
@@ -62,7 +62,7 @@ components:
           type: number
           x-faker:
             finance.amount:
-              min: 100
+              min: 1000
               max: 99999
   responses:
     account:
