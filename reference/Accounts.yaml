@@ -79,7 +79,7 @@ components:
           schema:
             $ref: '#/components/schemas/account'
     accounts:
-      description: Array of accounts
+      description: List of accounts
       content:
         application/json:
           schema:
