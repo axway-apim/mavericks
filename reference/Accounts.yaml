@@ -52,15 +52,18 @@ components:
         customerId:
           type: string
           x-faker: finance.account
-        type:
+        accountType:
           type: string
           enum:
             - checking
             - savings
             - investment
-        balance:
+        accountBalance:
           type: number
-          x-faker: finance.amount
+          x-faker:
+            finance.amount:
+              min: 1000
+              max: 99999 
   responses:
     account:
       description: Single account
