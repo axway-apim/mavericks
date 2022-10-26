@@ -4,8 +4,9 @@ x-stoplight:
 info:
   title: Portfolios
   version: '1.0'
+  description: ''
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:8095/portfolioManagement/v1'
 paths:
   '/listPortfolios/{customerId}':
     parameters:
