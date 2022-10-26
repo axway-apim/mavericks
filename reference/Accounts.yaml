@@ -8,7 +8,7 @@ info:
 servers:
   - url: 'http://localhost:3000'
 paths:
-  '/account/{id}':
+  '/listAccount/{id}':
     parameters:
       - schema:
           type: string
@@ -23,7 +23,7 @@ paths:
           $ref: '#/components/responses/account'
       operationId: get-account-id
       description: Get account by accountId
-  '/account/{customerId}':
+  '/listAccounts/{customerId}':
     parameters:
       - schema:
           type: string
@@ -48,17 +48,18 @@ components:
       properties:
         id:
           type: string
-          x-faker:
-            routingNumber
+          x-faker: routingNumber
         customerId:
           type: string
-          x-faker:
-            finance.account
+          x-faker: finance.account
         type:
           type: string
           x-faker:
             helpers:
-              arrayElement: ['checking', 'savings', 'investment']
+              arrayElement:
+                - checking
+                - savings
+                - investment
           enum:
             - checking
             - savings
