@@ -4,6 +4,7 @@ x-stoplight:
 info:
   title: Transaction Inquiry
   version: '1.0'
+  description: Returns previous day Information Reporting account transaction details.
 servers:
   - url: 'http://localhost:8095/reporting/v1/transaction-inquiries'
 paths:
@@ -16,7 +17,7 @@ paths:
           $ref: '#/components/responses/200-responseAsOfDate'
         '':
           $ref: '#/components/responses/200-responseAsOfDate'
-      description: ''
+      description: Returns previous day Information Reporting account transaction details for a date range.
       requestBody:
         $ref: '#/components/requestBodies/requestAsOfDate'
     parameters: []
@@ -27,6 +28,9 @@ paths:
       responses:
         '200':
           description: OK
+      description: |-
+
+        Returns previous day Information Reporting account transaction details for a date range.
 components:
   schemas:
     responseAsOfDate:
