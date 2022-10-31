@@ -27,8 +27,10 @@ paths:
       operationId: post-current-day
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/200-responseCurrentDay'
       description: Returns previous day Information Reporting account transaction details for a date range.
+      requestBody:
+        $ref: '#/components/requestBodies/requestCurrentDay'
 components:
   schemas:
     responseAsOfDate:
