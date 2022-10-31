@@ -183,7 +183,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/balanceInquiry'
+            $ref: '#/components/schemas/balanceInquirySingleDate'
           examples: {}
       description: Balance Inquiry Request
     balanceInquiryDateRange:
