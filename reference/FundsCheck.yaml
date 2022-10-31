@@ -14,7 +14,9 @@ paths:
       operationId: post-check
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/200-fundsCheckResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/fundsCheckRequest'
 components:
   schemas:
     fundsChecksRequest:
