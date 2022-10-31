@@ -24,7 +24,7 @@ paths:
       operationId: post-balance-inqury-previous-day
       responses:
         '200':
-          description: OK
+          $ref: '#/components/responses/200-previous-day'
         '':
           $ref: '#/components/responses/200-previous-day'
       requestBody:
