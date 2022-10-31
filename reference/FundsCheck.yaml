@@ -1,0 +1,60 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 3rvmm8lhrphqf
+info:
+  title: Funds Check
+  version: '1.0'
+  description: Queries current day account balance information to determine if the amount requested is available in the account; supports a single account for the current date.
+servers:
+  - url: 'http://localhost:8095/reporting/v1/funds-checks'
+paths:
+  /check:
+    post:
+      summary: ''
+      operationId: post-check
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    fundsChecksRequest:
+      type: object
+      properties:
+        account:
+          type: object
+          properties:
+            accountNumber:
+              type: string
+            bankId:
+              type: string
+        amount:
+          type: string
+      x-examples:
+        Example 1:
+          account:
+            accountNumber: '600811111111'
+            bankId: BOFAGB22
+          amount: '1000.00'
+    fundsChecksResponse:
+      type: object
+      properties:
+        fundsAvailable:
+          type: boolean
+      x-examples:
+        Example 1:
+          fundsAvailable: true
+  requestBodies:
+    fundsCheckRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/fundsChecksRequest'
+  responses:
+    200-fundsCheckResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/fundsChecksResponse'
+tags:
+  - name: Account Information

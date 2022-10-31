@@ -1,0 +1,252 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 4utotqhqi97dk
+info:
+  title: Payments
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000/payments/v2'
+paths:
+  /payment-initiations:
+    post:
+      summary: Payments Initiation
+      operationId: post-payment-initiations
+      responses:
+        '200':
+          $ref: '#/components/responses/200-Payments-Initiation'
+      description: Initiates a single payment instruction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/paymentInitiation'
+  /payment-initiations/status:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/200-Payments-Status'
+      operationId: get-payment-initiations-status
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 36
+          in: header
+          name: TransactionIdentification
+          required: true
+  /payment-initiations/cancellation:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-payment-initiations-cancellation
+components:
+  schemas:
+    paymentInitiation:
+      type: object
+      properties:
+        amount:
+          type: object
+          properties:
+            value:
+              type: string
+        creditor:
+          type: object
+          properties:
+            contactDetails:
+              type: object
+              properties:
+                emailAddress:
+                  type: string
+            name:
+              type: string
+            postalAddress:
+              type: object
+              properties:
+                addressLine:
+                  type: array
+                  items:
+                    type: string
+                city:
+                  type: string
+                country:
+                  type: string
+        creditorAccount:
+          type: object
+          properties:
+            currency:
+              type: string
+        debtor:
+          type: object
+          properties:
+            contactDetails:
+              type: object
+              properties:
+                emailAddress:
+                  type: string
+            identifiers:
+              type: array
+              items:
+                type: object
+                properties:
+                  identification:
+                    type: string
+                  issuer:
+                    type: string
+                  schemeName:
+                    type: string
+            name:
+              type: string
+        debtorAccount:
+          type: object
+          properties:
+            currency:
+              type: string
+            identification:
+              type: string
+        debtorAgent:
+          type: object
+          properties:
+            institution:
+              type: object
+              properties:
+                identification:
+                  type: string
+        instructionForCreditorAgent:
+          type: array
+          items:
+            type: string
+        paymentIdentification:
+          type: object
+          properties:
+            endToEndIdentification:
+              type: string
+        paymentType:
+          type: object
+          properties:
+            localInstrument:
+              type: string
+        requestedExecutionDate:
+          type: string
+        unstructuredRemittance:
+          type: string
+      x-examples:
+        Example 1:
+          amount:
+            value: '1.01'
+          creditor:
+            contactDetails:
+              emailAddress: you@creditor.com
+            name: Creditor Name
+            postalAddress:
+              addressLine:
+                - Address 1
+                - Address 2
+              city: City
+              country: US
+          creditorAccount:
+            currency: CAD
+          debtor:
+            contactDetails:
+              emailAddress: me@debtor.com
+            identifiers:
+              - identification: identification
+                issuer: issuer
+                schemeName: BRANDING
+            name: Debtor Name
+          debtorAccount:
+            currency: CAD
+            identification: '71141234567890'
+          debtorAgent:
+            institution:
+              identification: BOFACATT
+          instructionForCreditorAgent:
+            - 'SQ1:qazwsxedcrfv'
+            - 'SA1:edcwsxqaz'
+            - 'RPL:EN'
+          paymentIdentification:
+            endToEndIdentification: InteracTest1
+          paymentType:
+            localInstrument: INTERAC
+          requestedExecutionDate: '2021-12-06'
+          unstructuredRemittance: Interac Test 1
+      description: ''
+  responses:
+    200-Payments-Initiation:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                Reason:
+                  - reasonCode: CP212
+                    reasonDescription: Beneficiary Email Address is Required
+                endToEndIdentification: SenderRefSIT18
+                paymentStatus: Rejected By Bank
+                transactionIdentification: 1234567890ABC
+            properties:
+              Reason:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    reasonCode:
+                      type: string
+                    reasonDescription:
+                      type: string
+              endToEndIdentification:
+                type: string
+              paymentStatus:
+                type: string
+                enum:
+                  - Received by Bank
+                  - Rejected by Bank
+                example: Received by Bank
+              transactionIdentification:
+                type: string
+          examples: {}
+    200-Payments-Status:
+      description: Payment Status
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                endToEndIdentification: SenderRefSIT18
+                paymentStatus: Rejected By Bank
+                reason:
+                  - reasonCode: CP700
+                    reasonDescription: Invalid transaction status for cancel
+                transactionIdentification: 1234567890ABC
+            properties:
+              endToEndIdentification:
+                type: string
+                minLength: 64
+                maxLength: 64
+              paymentStatus:
+                type: string
+                enum:
+                  - Received by Bank
+                  - Cancelled
+                  - Pending Verification
+                  - Rejected by Bank
+                  - Processing by Bank
+                  - Confirmed by Bank
+                  - Settlement Complete
+              reason:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    reasonCode:
+                      type: string
+                    reasonDescription:
+                      type: string
+              transactionIdentification:
+                type: string
