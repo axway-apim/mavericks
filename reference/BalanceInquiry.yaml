@@ -10,6 +10,14 @@ servers:
 paths:
   /current-day:
     parameters: []
+    post:
+      summary: ''
+      operationId: post-current-day
+      responses:
+        '200':
+          $ref: '#/components/responses/200-current-day'
+      requestBody:
+        $ref: '#/components/requestBodies/balanceInquiry'
   /previous-day:
     post:
       summary: ''
