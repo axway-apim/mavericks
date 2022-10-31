@@ -6,7 +6,7 @@ info:
   version: '1.0'
   description: Returns Information Reporting account balance data.
 servers:
-  - url: 'http://localhost:8095/reporting/v1/balance-inquiries'
+  - url: 'http://localhost:8095/balance-inquiries'
 paths:
   /current-day:
     parameters: []

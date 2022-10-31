@@ -6,7 +6,7 @@ info:
   version: '1.0'
   description: Returns previous day Information Reporting account transaction details.
 servers:
-  - url: 'http://localhost:8095/reporting/v1/transaction-inquiries'
+  - url: 'http://localhost:8095/transaction-inquiries'
 paths:
   /previous-day:
     post:
@@ -28,9 +28,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: |-
-
-        Returns previous day Information Reporting account transaction details for a date range.
+      description: Returns previous day Information Reporting account transaction details for a date range.
 components:
   schemas:
     responseAsOfDate:
