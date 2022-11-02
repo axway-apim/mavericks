@@ -1,0 +1,161 @@
+openapi: 3.0.0
+x-stoplight:
+  id: j3wpi23elllrz
+info:
+  title: CheckServices
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /images:
+    post:
+      summary: ''
+      operationId: post-images
+      responses:
+        '200':
+          $ref: '#/components/responses/200-CheckImageResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/checkRequest'
+      description: Obtain images for paid checks within the retention period associated with a check disbursement account.
+  /check-issues:
+    post:
+      summary: ''
+      operationId: post-check-issues
+      responses:
+        '200':
+          $ref: '#/components/responses/200-CheckIssuesResponse'
+      requestBody:
+        $ref: '#/components/requestBodies/checkIssuesRequest'
+components:
+  schemas:
+    checkRequest:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        fromAmount:
+          type: string
+        fromCheckNumber:
+          type: string
+        fromDate:
+          type: string
+        toAmount:
+          type: string
+        toCheckNumber:
+          type: string
+        toDate:
+          type: string
+      x-examples:
+        Example 1:
+          accountNumber: '1416000004'
+          fromAmount: '1000.00'
+          fromCheckNumber: '1000'
+          fromDate: '2019-05-08'
+          toAmount: '15000.00'
+          toCheckNumber: '5000'
+          toDate: '2019-07-30'
+    checkResponse:
+      title: checkResponse
+      x-stoplight:
+        id: 0st1hgll3sc8n
+      type: object
+      properties:
+        id:
+          type: string
+    checkIssuesRequest:
+      type: object
+      properties:
+        issueList:
+          type: array
+          items:
+            type: object
+            properties:
+              accountNumber:
+                type: string
+              amount:
+                type: string
+              checkNumber:
+                type: string
+              issueAction:
+                type: string
+              issueDate:
+                type: string
+              payee:
+                type: string
+      x-examples:
+        Example 1:
+          issueList:
+            - accountNumber: '000000000280'
+              amount: '1231.00'
+              checkNumber: '4452'
+              issueAction: add_Issue
+              issueDate: '2020-07-16'
+              payee: John Smith
+    checkIssuesResponse:
+      type: object
+      properties:
+        issueList:
+          type: array
+          items:
+            type: object
+            properties:
+              accountNumber:
+                type: string
+              amount:
+                type: string
+              checkNumber:
+                type: string
+              issueAction:
+                type: string
+              issueDate:
+                type: string
+              message:
+                type: string
+              payee:
+                type: string
+              status:
+                type: string
+        processedItems:
+          type: integer
+        totalItems:
+          type: integer
+        unprocessedItems:
+          type: integer
+      x-examples:
+        Example 1:
+          issueList:
+            - accountNumber: '000000000280'
+              amount: '1231.00'
+              checkNumber: '4452'
+              issueAction: add_Issue
+              issueDate: '2020-07-16'
+              message: Processing by Bank
+              payee: John Smith
+              status: '200'
+          processedItems: 1
+          totalItems: 1
+          unprocessedItems: 0
+  requestBodies:
+    checkRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/checkRequest'
+    checkIssuesRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/checkIssuesRequest'
+  responses:
+    200-CheckImageResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/checkResponse'
+    200-CheckIssuesResponse:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/checkIssuesResponse'
