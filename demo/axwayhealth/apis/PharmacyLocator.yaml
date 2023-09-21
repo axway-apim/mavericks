@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: Pharmacy Locator API
+  description: API for locating pharmacies and obtaining pharmacy information.
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+components:
+  schemas:
+    Pharmacy:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique pharmacy ID.
+        name:
+          type: string
+          description: Name of the pharmacy.
+        address:
+          type: string
+          description: Street address of the pharmacy.
+        city:
+          type: string
+          description: City where the pharmacy is located.
+        state:
+          type: string
+          description: State or province where the pharmacy is located.
+        zipCode:
+          type: string
+          description: ZIP or postal code of the pharmacy.
+        phoneNumber:
+          type: string
+          description: Phone number of the pharmacy.
+
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+paths:
+  /pharmacies:
+    get:
+      summary: List Pharmacies
+      description: Retrieve a list of pharmacies within a specified area.
+      parameters:
+        - name: city
+          in: query
+          description: City name to filter pharmacies.
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: State or province name to filter pharmacies.
+          schema:
+            type: string
+        - name: zipCode
+          in: query
+          description: ZIP or postal code to filter pharmacies.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of pharmacies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pharmacy'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /pharmacies/{pharmacyId}:
+    parameters:
+      - name: pharmacyId
+        in: path
+        required: true
+        description: The ID of the pharmacy to retrieve.
+        schema:
+          type: integer
+          format: int64
+
+    get:
+      summary: Get Pharmacy Details
+      description: Retrieve detailed information about a specific pharmacy.
+      responses:
+        '200':
+          description: Pharmacy information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pharmacy'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Pharmacy not found.
+        '500':
+          description: Internal Server Error.

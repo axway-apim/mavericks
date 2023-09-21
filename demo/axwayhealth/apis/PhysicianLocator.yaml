@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Physician Locator API
+  description: API for locating physicians and obtaining physician information.
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+components:
+  schemas:
+    Physician:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique physician ID.
+        name:
+          type: string
+          description: Full name of the physician.
+        specialization:
+          type: string
+          description: Medical specialization or field of practice.
+        address:
+          type: string
+          description: Street address of the physician's clinic.
+        city:
+          type: string
+          description: City where the physician practices.
+        state:
+          type: string
+          description: State or province where the physician practices.
+        zipCode:
+          type: string
+          description: ZIP or postal code of the physician's clinic.
+        phoneNumber:
+          type: string
+          description: Phone number of the physician's clinic.
+
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+paths:
+  /physicians:
+    get:
+      summary: List Physicians
+      description: Retrieve a list of physicians within a specified area and specialization.
+      parameters:
+        - name: city
+          in: query
+          description: City name to filter physicians.
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: State or province name to filter physicians.
+          schema:
+            type: string
+        - name: specialization
+          in: query
+          description: Medical specialization or field of practice to filter physicians.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of physicians.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Physician'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /physicians/{physicianId}:
+    parameters:
+      - name: physicianId
+        in: path
+        required: true
+        description: The ID of the physician to retrieve.
+        schema:
+          type: integer
+          format: int64
+
+    get:
+      summary: Get Physician Details
+      description: Retrieve detailed information about a specific physician.
+      responses:
+        '200':
+          description: Physician information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Physician'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Physician not found.
+        '500':
+          description: Internal Server Error.
