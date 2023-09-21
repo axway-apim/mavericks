@@ -1,6 +1,7 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Appointment Scheduling API
+  summary: Manage patient appointments
   description: API for managing appointments and scheduling.
   version: 1.0.0
 
