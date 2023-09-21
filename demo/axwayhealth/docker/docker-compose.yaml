@@ -15,34 +15,32 @@ services:
       - Telemedicine
   AppointmentScheduling:
     image: stoplight/prism:4
-    volumes:
-      - ./apispecs/ApointmentScheduling.yaml:/usr/src/prism/packages/cli/AppointmentScheduling.yaml
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      AppointmentScheduling.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/AppointmentScheduling.yaml
   ElectronicHealthcareRecords:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      ./apispecs/ElectronicHealthcareRecords.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/ElectronicHealthcareRecords.yaml
   InsuranceAndBilling:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      ./apispecs/InsuranceaAndBilling.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/InsuranceaAndBilling.yaml
   HealthAndFitnessData:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      ./apispecs/HealthAndFitnessData.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/HealthAndFitnessData.yaml
   PharmacyAndMedication:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      ./apispecs/PharmacyAndBilling.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PharmacyAndBilling.yaml
   Telemedicine:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      ./apispecs/Telemedecine.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/Telemedecine.yaml
 
