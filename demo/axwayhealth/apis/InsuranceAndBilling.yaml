@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  title: Insurance and Billing API
+  description: API for managing insurance coverage and billing information.
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+components:
+  schemas:
+    InsurancePolicy:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique insurance policy ID.
+        policyNumber:
+          type: string
+          description: Policy number for the insurance policy.
+        holderName:
+          type: string
+          description: Name of the policyholder.
+        coverageAmount:
+          type: number
+          format: float
+          description: Coverage amount provided by the policy (in USD).
+
+    Bill:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique bill ID.
+        policyId:
+          type: integer
+          description: ID of the insurance policy associated with the bill.
+        amount:
+          type: number
+          format: float
+          description: Bill amount (in USD).
+        dueDate:
+          type: string
+          format: date
+          description: Due date for the bill (YYYY-MM-DD).
+        status:
+          type: string
+          enum: [Pending, Paid]
+          description: Status of the bill.
+
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+paths:
+  /insurance-policies:
+    get:
+      summary: List Insurance Policies
+      description: Retrieve a list of insurance policies.
+      responses:
+        '200':
+          description: A list of insurance policies.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InsurancePolicy'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /bills:
+    get:
+      summary: List Bills
+      description: Retrieve a list of bills.
+      responses:
+        '200':
+          description: A list of bills.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bill'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+    post:
+      summary: Create a Bill
+      description: Create a new bill.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bill'
+      responses:
+        '201':
+          description: Bill created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bill'
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /bills/{billId}:
+    parameters:
+      - name: billId
+        in: path
+        required: true
+        description: The ID of the bill to retrieve or update.
+        schema:
+          type: integer
+          format: int64
+
+    get:
+      summary: Get a Bill
+      description: Retrieve information about a specific bill.
+      responses:
+        '200':
+          description: Bill information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bill'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Bill not found.
+        '500':
+          description: Internal Server Error.
+
+    put:
+      summary: Update a Bill
+      description: Update information about a specific bill.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bill'
+      responses:
+        '200':
+          description: Bill updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bill'
+        '400':
+          description: Bad Request.
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Bill not found.
+        '500':
+          description: Internal Server Error.
+
+    delete:
+      summary: Delete a Bill
+      description: Delete a specific bill.
+      responses:
+        '204':
+          description: Bill deleted successfully.
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Bill not found.
+        '500':
+          description: Internal Server Error.

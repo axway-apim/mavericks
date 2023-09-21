@@ -1,0 +1,26 @@
+http://localhost
+route /AppointmentScheduling/* {
+uri strip_prefix /AppointmentScheduling
+reverse_proxy AppointmentScheduling:3000
+}
+route /ElectronicHealthcareRecords/* {
+uri strip_prefix /ElectronicHealthcareRecords
+reverse_proxy ElectronicHealthcareRecords:3000
+}
+route /InsuranceAndBilling/* {
+uri strip_prefix /InsuranceAndBilling
+reverse_proxy InsuranceAndBilling:3000
+}
+route /HealthAndFitnessData/* {
+uri strip_prefix /HealthAndFitnessData
+reverse_proxy HealthAndFitnessData:3000
+}
+route /PharmacyAndMedication/* {
+uri strip_prefix /PharmacyAndMedication
+reverse_proxy PharmacyAndMedication:3000
+}
+route /Telemedicine/* {
+uri strip_prefix /Telemedicine
+reverse_proxy Telemedicine:3000
+}
+

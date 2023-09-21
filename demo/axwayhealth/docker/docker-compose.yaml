@@ -1,0 +1,48 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8096:80'
+    depends_on:
+      - AppointmentScheduling
+      - ElectronicHealthcareRecords
+      - InsuranceAndBilling
+      - HealthAndFitnessData
+      - PharmacyAndMedication
+      - Telemedicine
+  AppointmentScheduling:
+    image: stoplight/prism:4
+    volumes:
+      - ./apispecs/ApointmentScheduling.yaml:/usr/src/prism/packages/cli/AppointmentScheduling.yaml
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      AppointmentScheduling.yaml
+  ElectronicHealthcareRecords:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      ./apispecs/ElectronicHealthcareRecords.yaml
+  InsuranceAndBilling:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      ./apispecs/InsuranceaAndBilling.yaml
+  HealthAndFitnessData:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      ./apispecs/HealthAndFitnessData.yaml
+  PharmacyAndMedication:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      ./apispecs/PharmacyAndBilling.yaml
+  Telemedicine:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      ./apispecs/Telemedecine.yaml
+
