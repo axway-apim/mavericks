@@ -12,6 +12,8 @@ services:
       - InsuranceAndBilling
       - HealthAndFitnessData
       - PharmacyAndMedication
+      - PharmacyLocator
+      - PhysicianLocator
       - Telemedicine
   AppointmentScheduling:
     image: stoplight/prism:4
@@ -27,7 +29,7 @@ services:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/InsuranceaAndBilling.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/InsuranceAndBilling.yaml
   HealthAndFitnessData:
     image: stoplight/prism:4
     command: >
@@ -37,10 +39,20 @@ services:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PharmacyAndBilling.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PharmacyAndMedication.yaml
+  PharmacyLocator:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PharmacyLocator.yaml
+  PhysicianLocator:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PhysicianLocator.yaml
   Telemedicine:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
-      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/Telemedecine.yaml
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/Telemedicine.yaml
 
