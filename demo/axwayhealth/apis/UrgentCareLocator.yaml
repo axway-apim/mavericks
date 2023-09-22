@@ -6,7 +6,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:8096/UrgetnCareLocator
+  - url: http://localhost:8096/UrgentCareLocator
     description: Production server
 
 components:
