@@ -3,7 +3,7 @@ info:
   title: "Payment Gateway API"
   version: "1.0.0"
 servers:
-  - url: "https://payment-gateway.sample-server.com"
+  - url: "http://localhost:8097/PaymentGateway"
 paths:
   /process:
     post:

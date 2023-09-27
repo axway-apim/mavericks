@@ -3,7 +3,7 @@ info:
   title: "Customer Management API"
   version: "1.0.0"
 servers:
-  - url: "https://customer-management.sample-server.com"
+  - url: "http://localhost:8097/CustomerManagement"
 paths:
   /add:
     post:

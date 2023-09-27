@@ -3,19 +3,7 @@ info:
   title: "Document Verification API"
   version: "1.0.0"
 servers:
-  - url: "https://document-verification.sample-server.com"
-paths:
-  /verify:
-    post:
-      summary: "Verify Document"
-      responses:
-        '200':
-          description: "Document verifiedopenapi: "3.0.0"
-info:
-  title: "Document Verification API"
-  version: "1.0.0"
-servers:
-  - url: "https://document-verification.sample-server.com"
+  - url: "http://localhost:8097/DocumentVerify"
 paths:
   /verify:
     post:

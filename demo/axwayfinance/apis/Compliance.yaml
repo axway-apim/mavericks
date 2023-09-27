@@ -1,32 +1,32 @@
 openapi: "3.0.0"
 info:
-  title: "Credit Score API"
+  title: "Compliance API"
   version: "1.0.0"
 servers:
-  - url: "https://credit-score.sample-server.com"
+  - url: "http://localhost:8097/Compliance"
 paths:
-  /getScore:
+  /check:
     get:
-      summary: "Get Credit Score"
+      summary: "Check Compliance"
       parameters:
-        - name: "userId"
+        - name: "companyId"
           in: "query"
           required: true
           schema:
             type: "string"
       responses:
         '200':
-          description: "Credit score retrieved."
+          description: "Compliance status retrieved."
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreditScore'
+                $ref: '#/components/schemas/ComplianceStatus'
 components:
   schemas:
-    CreditScore:
+    ComplianceStatus:
       type: object
       properties:
-        userId:
+        companyId:
           type: string
-        score:
-          type: integer
+        status:
+          type: string

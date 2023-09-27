@@ -1,0 +1,38 @@
+http://localhost
+route /Compliance/* {
+uri strip_prefix /Compliance
+reverse_proxy Compliance:3000
+}
+route /CreditScore/* {
+uri strip_prefix /CreditScore
+reverse_proxy CreditScore:3000
+}
+route /CustomerManagement/* {
+uri strip_prefix /CustomerManagement
+reverse_proxy CustomerManagement:3000
+}
+route /DocumentVerify/* {
+uri strip_prefix /DocumentVerify
+reverse_proxy DocumentVerify:3000
+}
+route /InterestRate/* {
+uri strip_prefix /InterestRate
+reverse_proxy InterestRate:3000
+}
+route /Inventory/* {
+uri strip_prefix /Inventory
+reverse_proxy Inventory:3000
+}
+route /LoanOrigination/* {
+uri strip_prefix /LoanOrigination
+reverse_proxy LoanOrigination:3000
+}
+route /Notification/* {
+uri strip_prefix /Notification
+reverse_proxy Notification:3000
+}
+route /PaymentGateway/* {
+uri strip_prefix /PaymentGateway
+reverse_proxy PaymentGateway:3000
+}
+

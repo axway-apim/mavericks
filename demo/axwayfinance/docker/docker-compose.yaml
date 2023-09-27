@@ -1,0 +1,63 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8097:80'
+    depends_on:
+      - Compliance
+      - CreditScore
+      - CustomerManagement
+      - DocumentVerify
+      - InterestRate
+      - Inventory
+      - LoanOrigination
+      - Notification
+      - PaymentGateway
+  Compliance:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/Compliance.yaml
+  CreditScore:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/CreditScore.yaml
+  CustomerManagement:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/CustomerManagement.yaml
+  DocumentVerify:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/DocumentVerify.yaml
+  InterestRate:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/InterestRate.yaml
+  Inventory:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/Inventory.yaml
+  LoanOrigination:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/LoanOrigination.yaml
+  Notification:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/Notification.yaml
+  PaymentGateway:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/PaymentGateway.yaml

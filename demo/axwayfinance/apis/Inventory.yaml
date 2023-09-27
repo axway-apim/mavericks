@@ -3,7 +3,7 @@ info:
   title: "Inventory API"
   version: "1.0.0"
 servers:
-  - url: "https://inventory.sample-server.com"
+  - url: "http://localhost:8097/Inventory"
 paths:
   /list:
     get:
@@ -26,4 +26,3 @@ components:
             type: string
           quantity:
             type: integer
-."

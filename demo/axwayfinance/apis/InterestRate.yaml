@@ -3,7 +3,7 @@ info:
   title: "Interest Rate API"
   version: "1.0.0"
 servers:
-  - url: "https://interest-rate.sample-server.com"
+  - url: "http://localhost:8097/InterestRate"
 paths:
   /currentRate:
     get:

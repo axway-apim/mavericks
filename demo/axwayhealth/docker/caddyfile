@@ -19,6 +19,14 @@ route /PharmacyAndMedication/* {
 uri strip_prefix /PharmacyAndMedication
 reverse_proxy PharmacyAndMedication:3000
 }
+route /PharmacyLocator/* {
+uri strip_prefix /PharmacyLocator
+reverse_proxy PharmacyLocator:3000
+}
+route /PhysicianLocator/* {
+uri strip_prefix /PhysicianLocator
+reverse_proxy PhysicianLocator:3000
+}
 route /Telemedicine/* {
 uri strip_prefix /Telemedicine
 reverse_proxy Telemedicine:3000
