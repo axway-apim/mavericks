@@ -8,6 +8,47 @@ paths:
   /initiate:
     post:
       summary: "Initiate Loan"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanRequest'
       responses:
         '200':
           description: "Loan initiated successfully."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanResponse'
+  /status:
+    get:
+      summary: "Check Loan Status"
+      responses:
+        '200':
+          description: "Loan status retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanStatus'
+components:
+  schemas:
+    LoanRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+        term:
+          type: integer
+    LoanResponse:
+      type: object
+      properties:
+        loanId:
+          type: string
+    LoanStatus:
+      type: object
+      properties:
+        loanId:
+          type: string
+        status:
+          type: string
