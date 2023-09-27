@@ -6,6 +6,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
     ports:
       - '8097:80'
+    networks:
+      - finance
     depends_on:
       - Compliance
       - CreditScore
