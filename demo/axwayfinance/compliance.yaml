@@ -8,6 +8,25 @@ paths:
   /check:
     get:
       summary: "Check Compliance"
+      parameters:
+        - name: "companyId"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
       responses:
         '200':
           description: "Compliance status retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceStatus'
+components:
+  schemas:
+    ComplianceStatus:
+      type: object
+      properties:
+        companyId:
+          type: string
+        status:
+          type: string
