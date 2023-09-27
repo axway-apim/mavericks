@@ -23,4 +23,8 @@ route /Telemedicine/* {
 uri strip_prefix /Telemedicine
 reverse_proxy Telemedicine:3000
 }
+route /UrgentCareLocator/* {
+uri strip_prefix /UrgentCareLocator
+reverse_proxy UrgentCareLocator:3000
+}
 

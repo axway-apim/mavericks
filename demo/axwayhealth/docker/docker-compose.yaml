@@ -15,6 +15,7 @@ services:
       - PharmacyLocator
       - PhysicianLocator
       - Telemedicine
+      - UrgentCareLocator
   AppointmentScheduling:
     image: stoplight/prism:4
     command: >
@@ -55,4 +56,8 @@ services:
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/Telemedicine.yaml
-
+  UrgentCareLocator:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/UrgentCareLocator.yaml
