@@ -30,40 +30,56 @@ services:
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/CreditScore.yaml
+    networks:
+      - finance
   CustomerManagement:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/CustomerManagement.yaml
+    networks:
+      - finance
   DocumentVerify:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/DocumentVerify.yaml
+    networks:
+      - finance
   InterestRate:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/InterestRate.yaml
+    networks:
+      - finance
   Inventory:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/Inventory.yaml
+    networks:
+      - finance
   LoanOrigination:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/LoanOrigination.yaml
+    networks:
+      - finance
   Notification:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/Notification.yaml
+    networks:
+      - finance
   PaymentGateway:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/PaymentGateway.yaml
+    networks:
+      - finance
 networks:
   finance:
