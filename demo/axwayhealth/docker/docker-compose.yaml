@@ -1,5 +1,4 @@
 version: '3'
-name: healthcare
 services:
   proxy:
     image: caddy
