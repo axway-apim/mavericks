@@ -8,6 +8,30 @@ paths:
   /add:
     post:
       summary: "Add Customer"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
       responses:
         '200':
           description: "Customer added."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerResponse'
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+    CustomerResponse:
+      type: object
+      properties:
+        customerId:
+          type: string
