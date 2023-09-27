@@ -6,6 +6,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
     ports:
       - '8096:80'
+    networks:
+      - healthcare
     depends_on:
       - AppointmentScheduling
       - ElectronicHealthcareRecords
@@ -21,43 +23,63 @@ services:
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/AppointmentScheduling.yaml
+    networks:
+      - healthcare
   ElectronicHealthcareRecords:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/ElectronicHealthcareRecords.yaml
+    networks:
+      - healthcare
   InsuranceAndBilling:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/InsuranceAndBilling.yaml
+    networks:
+      - healthcare
   HealthAndFitnessData:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/HealthAndFitnessData.yaml
+    networks:
+      - healthcare
   PharmacyAndMedication:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PharmacyAndMedication.yaml
+    networks:
+      - healthcare
   PharmacyLocator:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PharmacyLocator.yaml
+    networks:
+      - healthcare
   PhysicianLocator:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/PhysicianLocator.yaml
+    networks:
+      - healthcare
   Telemedicine:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/Telemedicine.yaml
+    networks:
+      - healthcare
   UrgentCareLocator:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayhealth/apis/UrgentCareLocator.yaml
+    networks:
+      - healthcare
+networks:
+  healthcare:
