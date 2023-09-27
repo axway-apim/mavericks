@@ -61,3 +61,5 @@ services:
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwayfinance/apis/PaymentGateway.yaml
+networks:
+  finance:
