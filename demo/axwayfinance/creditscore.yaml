@@ -8,6 +8,25 @@ paths:
   /getScore:
     get:
       summary: "Get Credit Score"
+      parameters:
+        - name: "userId"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
       responses:
         '200':
           description: "Credit score retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditScore'
+components:
+  schemas:
+    CreditScore:
+      type: object
+      properties:
+        userId:
+          type: string
+        score:
+          type: integer
