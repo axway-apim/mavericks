@@ -1,0 +1,13 @@
+openapi: "3.0.0"
+info:
+  title: "Credit Score API"
+  version: "1.0.0"
+servers:
+  - url: "https://credit-score.sample-server.com"
+paths:
+  /getScore:
+    get:
+      summary: "Get Credit Score"
+      responses:
+        '200':
+          description: "Credit score retrieved."

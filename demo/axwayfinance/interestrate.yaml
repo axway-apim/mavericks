@@ -1,0 +1,13 @@
+openapi: "3.0.0"
+info:
+  title: "Interest Rate API"
+  version: "1.0.0"
+servers:
+  - url: "https://interest-rate.sample-server.com"
+paths:
+  /currentRate:
+    get:
+      summary: "Get Current Interest Rate"
+      responses:
+        '200':
+          description: "Interest rate retrieved."

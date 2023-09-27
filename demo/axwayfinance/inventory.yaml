@@ -1,0 +1,13 @@
+openapi: "3.0.0"
+info:
+  title: "Inventory API"
+  version: "1.0.0"
+servers:
+  - url: "https://inventory.sample-server.com"
+paths:
+  /list:
+    get:
+      summary: "List Inventory"
+      responses:
+        '200':
+          description: "Inventory listed."

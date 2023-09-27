@@ -1,0 +1,13 @@
+openapi: "3.0.0"
+info:
+  title: "Loan Origination API"
+  version: "1.0.0"
+servers:
+  - url: "https://loan-origination.sample-server.com"
+paths:
+  /initiate:
+    post:
+      summary: "Initiate Loan"
+      responses:
+        '200':
+          description: "Loan initiated successfully."

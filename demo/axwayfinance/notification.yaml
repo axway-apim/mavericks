@@ -1,0 +1,13 @@
+openapi: "3.0.0"
+info:
+  title: "Notification API"
+  version: "1.0.0"
+servers:
+  - url: "https://notification.sample-server.com"
+paths:
+  /send:
+    post:
+      summary: "Send Notification"
+      responses:
+        '200':
+          description: "Notification sent successfully."

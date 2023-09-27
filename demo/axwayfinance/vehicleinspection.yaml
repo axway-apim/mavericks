@@ -1,1 +1,114 @@
+openapi: "3.0.0"
+info:
+  title: "Vehicle Inspection API"
+  version: "1.0.0"
+servers:
+  - url: http://demo.dxchange.cloud:9080
+paths:
+  /vehicleinspection:
+    get:
+      summary: "Get all vehicle inspections"
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Vehicle"
 
+    post:
+      summary: "Create a new vehicle inspection"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Vehicle"
+      responses:
+        '201':
+          description: "Vehicle inspection created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vehicle"
+
+  /vehicleinspection/{vin}:
+    get:
+      summary: "Get a vehicle inspection by VIN"
+      parameters:
+        - name: "vin"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vehicle"
+
+    put:
+      summary: "Update a vehicle inspection by VIN"
+      parameters:
+        - name: "vin"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Vehicle"
+      responses:
+        '200':
+          description: "Vehicle inspection updated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Vehicle"
+
+    delete:
+      summary: "Delete a vehicle inspection by VIN"
+      parameters:
+        - name: "vin"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        '204':
+          description: "Vehicle inspection deleted"
+
+components:
+  schemas:
+    Vehicle:
+      type: "object"
+      properties:
+        vin:
+          type: "string"
+        year:
+          type: "string"
+        make:
+          type: "string"
+        model:
+          type: "string"
+        body_type:
+          type: "string"
+        trim:
+          type: "string"
+        transmission:
+          type: "string"
+        ext_col:
+          type: "string"
+        int_col:
+          type: "string"
+        odom_reading:
+          type: "integer"
+        odom_unit:
+          type: "string"

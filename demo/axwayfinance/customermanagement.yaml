@@ -1,0 +1,13 @@
+openapi: "3.0.0"
+info:
+  title: "Customer Management API"
+  version: "1.0.0"
+servers:
+  - url: "https://customer-management.sample-server.com"
+paths:
+  /add:
+    post:
+      summary: "Add Customer"
+      responses:
+        '200':
+          description: "Customer added."
