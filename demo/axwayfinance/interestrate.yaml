@@ -11,3 +11,17 @@ paths:
       responses:
         '200':
           description: "Interest rate retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterestRate'
+components:
+  schemas:
+    InterestRate:
+      type: object
+      properties:
+        rate:
+          type: number
+        type:
+          type: string
+
