@@ -11,3 +11,19 @@ paths:
       responses:
         '200':
           description: "Inventory listed."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryList'
+components:
+  schemas:
+    InventoryList:
+      type: array
+      items:
+        type: object
+        properties:
+          itemId:
+            type: string
+          quantity:
+            type: integer
+."
