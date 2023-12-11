@@ -1,0 +1,30 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    container_name: caddy_logistics
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8098:80'
+    networks:
+      - logistics
+    depends_on:
+      - TrackAndTrace
+      - OrderManagement
+  TrackAndTrace:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaylogistics/apis/TrackAndTrace.yaml
+    networks:
+      - logistics
+  OrderManagement:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaylogistics/apis/OrderManagement.yaml
+    networks:
+      - logistics
+networks:
+  logistics:

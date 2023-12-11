@@ -1,0 +1,11 @@
+http://localhost
+route /TrackAndTrace/* {
+uri strip_prefix /TrackAndTrace
+reverse_proxy TrackAndTrace:3000
+}
+route /OrderManagement/* {
+uri strip_prefix /OrderManagement
+reverse_proxy OrderManagement:3000
+}
+
+
