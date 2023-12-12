@@ -9,5 +9,5 @@ reverse_proxy OrderManagement:3000
 }
 route /OperationsAnalytics/* {
 uri strip_prefix /OperationsAnalytics
-reverse_proxy OrderManagement:3000
+reverse_proxy OperationsAnalytics:3000
 }
