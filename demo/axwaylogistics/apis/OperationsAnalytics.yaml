@@ -13,34 +13,43 @@ components:
     LogisticsAnalyticsData:
       type: object
       properties:
-        operationId:
+        shippingMethod:
           type: string
-          description: Unique identifier for the logistics operation.
-        operationName:
-          type: string
-          description: Name of the logistics operation.
+          enum: [Ocean, Air, Ground, Rail, Intermodal]
         startDate:
           type: string
+          x-faker: date.past
           format: date
           description: Start date of the logistics operation.
         endDate:
           type: string
+          x-faker: date.past
           format: date
           description: End date of the logistics operation.
         metrics:
           type: object
           properties:
             totalShipments:
-              type: integer
+              type: number
+              x-faker:
+                datatype.number:
+                  min: 1
+                  max: 500
               description: Total number of shipments.
             onTimeDeliveryRate:
               type: number
-              format: float
+              x-faker:
+                datatype.number:
+                  min: 70
+                  max: 100
               description: Percentage of on-time deliveries.
             averageDeliveryTime:
               type: number
-              format: float
-              description: Average delivery time in hours.
+              x-faker:
+                datatype.number:
+                  min: 5
+                  max: 30
+              description: Average delivery time in days.
 
   securitySchemes:
     apiKeyAuth:
@@ -49,7 +58,7 @@ components:
       name: Authorization
 
 paths:
-  /analytics/totalShipments:
+  /totalShipments:
     get:
       summary: Get Total Shipments Analytics
       description: Retrieve analytics data for total shipments.
@@ -65,7 +74,7 @@ paths:
         '500':
           description: Internal Server Error.
 
-  /analytics/onTimeDeliveryRate:
+  /onTimeDeliveryRate:
     get:
       summary: Get On-Time Delivery Rate Analytics
       description: Retrieve analytics data for on-time delivery rate.

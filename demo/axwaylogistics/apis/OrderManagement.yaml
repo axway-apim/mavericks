@@ -15,19 +15,30 @@ components:
       properties:
         orderId:
           type: string
+          x-faker: finance.routingNumber
           description: Unique identifier for the shipping order.
         senderName:
           type: string
+          x-faker: name.firstName
+          format: string
           description: Name of the sender.
         recipientName:
           type: string
+          x-faker: name.firstName
           description: Name of the recipient.
         destinationAddress:
           type: string
+          x-faker:
+            address.streetAddress:
+              useFullAddress: true
           description: Destination address of the shipment.
         weight:
           type: number
-          format: float
+          x-faker:
+            datatype.number:
+              min: 1
+              max: 200
+          format: string
           description: Weight of the package in kilograms.
         shippingMethod:
           type: string
@@ -38,6 +49,8 @@ components:
           description: Current status of the shipping order.
         lastReportedLocation:
           type: string
+          x-faker:
+            address.streetAddress
           description: Last reported location of shipment.
         lastLocationUpdate:
           type: string
@@ -52,7 +65,7 @@ components:
       name: Authorization
 
 paths:
-  /orderManagement/shippingOrders:
+  /shippingOrders:
     post:
       summary: Create Shipping Order
       description: Create a new shipping order.
@@ -76,7 +89,7 @@ paths:
         '500':
           description: Internal Server Error.
 
-  /orderManagement/shippingOrders/{orderId}:
+  /shippingOrders/{orderId}:
     parameters:
       - name: orderId
         in: path
