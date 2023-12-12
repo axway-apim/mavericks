@@ -16,8 +16,9 @@ components:
         orderId:
           type: string
           x-faker:
-            random.alphaNumeric:
-              count: 16
+            random.numeric:
+              length: 16
+              allowLeadingZeros: true
           description: Unique identifier for the shipping order.
         senderName:
           type: string
