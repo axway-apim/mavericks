@@ -90,7 +90,7 @@ paths:
         '500':
           description: Internal Server Error.
 
-  /analytics/average-delivery-time:
+  /average-delivery-time:
     get:
       summary: Get Average Delivery Time Analytics
       description: Retrieve analytics data for average delivery time.
@@ -106,7 +106,7 @@ paths:
         '500':
           description: Internal Server Error.
 
-  /analytics/overallPerformance:
+  /overallPerformance:
     get:
       summary: Get Overall Performance Analytics
       description: Retrieve overall performance analytics data.
