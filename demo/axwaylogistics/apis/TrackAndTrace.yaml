@@ -26,10 +26,7 @@ components:
           description: Name of the sender.
         recipientName:
           type: string
-          x-faker:
-            fake: 
-              name.firstName
-              name.lastName
+          x-faker: name.firstName
           description: Name of the recipient.
         destinationAddress:
           type: string
