@@ -24,13 +24,15 @@ components:
         recipientName:
           type: string
           x-faker:
-            name.firstName
-            name.lastName
+            helper.mustache ('{{firstName}} {{lastName}}'):
+              firstName: faker.name.firstName
+              lastName: name.lastName
           description: Name of the recipient.
         destinationAddress:
           type: string
           x-faker:
-            location.streetAddress
+            address.streetAddress:
+              useFullAddress: true
           description: Destination address of the shipment.
         weight:
           type: number
@@ -50,7 +52,7 @@ components:
         lastReportedLocation:
           type: string
           x-faker:
-            location.streetAddress
+            address.streetAddress
           description: Last reported location of shipment.
         lastLocationUpdate:
           type: string
