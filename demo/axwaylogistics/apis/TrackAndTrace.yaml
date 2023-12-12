@@ -27,7 +27,9 @@ components:
         recipientName:
           type: string
           x-faker:
-            fake('{{name.firstName}} {{name.lastName}}')
+            fake: 
+              name.firstName
+              name.lastName
           description: Name of the recipient.
         destinationAddress:
           type: string
