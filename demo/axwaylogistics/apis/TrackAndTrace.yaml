@@ -19,6 +19,7 @@ components:
         senderName:
           type: string
           x-faker: person.fullName
+          format: string
           description: Name of the sender.
         recipientName:
           type: string
