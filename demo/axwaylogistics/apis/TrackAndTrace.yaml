@@ -18,11 +18,13 @@ components:
           description: Unique identifier for the shipping order.
         senderName:
           type: string
-          x-faker: person.fullName
+          x-faker:
+            person.fullName
           description: Name of the sender.
         recipientName:
           type: string
-          x-faker: person.fullName
+          x-faker:
+            person.fullName
           description: Name of the recipient.
         destinationAddress:
           type: string
