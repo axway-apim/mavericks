@@ -25,8 +25,8 @@ components:
           type: string
           x-faker:
             helper.mustache ('{{firstName}} {{lastName}}'):
-              firstName: faker.name.firstName
-              lastName: name.lastName
+              firstName: ${faker.name.firstName}
+              lastName: ${name.lastName}
           description: Name of the recipient.
         destinationAddress:
           type: string
