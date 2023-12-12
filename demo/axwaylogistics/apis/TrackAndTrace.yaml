@@ -15,6 +15,9 @@ components:
       properties:
         orderId:
           type: string
+          x-faker:
+            random.alphaNumeric:
+              length: 16
           description: Unique identifier for the shipping order.
         senderName:
           type: string
@@ -24,9 +27,7 @@ components:
         recipientName:
           type: string
           x-faker:
-            helper.mustache ('{{firstName}} {{lastName}}'):
-              firstName: ${faker.name.firstName}
-              lastName: ${name.lastName}
+            fake('{{name.firstName}} {{name.lastName}}')
           description: Name of the recipient.
         destinationAddress:
           type: string
