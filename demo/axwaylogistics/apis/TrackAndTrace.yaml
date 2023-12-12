@@ -15,10 +15,7 @@ components:
       properties:
         orderId:
           type: string
-          x-faker:
-            random.numeric:
-              length: 16
-              allowLeadingZeros: true
+          x-faker: finance.routingNumber
           description: Unique identifier for the shipping order.
         senderName:
           type: string
