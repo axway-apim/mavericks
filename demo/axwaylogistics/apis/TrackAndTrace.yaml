@@ -18,16 +18,25 @@ components:
           description: Unique identifier for the shipping order.
         senderName:
           type: string
+          x-faker: person.fullName
           description: Name of the sender.
         recipientName:
           type: string
+          x-faker: person.fullName
           description: Name of the recipient.
         destinationAddress:
           type: string
+          x-faker:
+            location.streetAddress:
+              useFullAddress: true
           description: Destination address of the shipment.
         weight:
           type: number
-          format: float
+          x-faker:
+            datatype.number:
+              min: 1
+              max: 200
+          format: string
           description: Weight of the package in kilograms.
         shippingMethod:
           type: string
@@ -38,6 +47,9 @@ components:
           description: Current status of the shipping order.
         lastReportedLocation:
           type: string
+          x-faker:
+            location.streetAddress:
+              useFullAddress: true
           description: Last reported location of shipment.
         lastLocationUpdate:
           type: string

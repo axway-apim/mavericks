@@ -52,7 +52,7 @@ components:
       name: Authorization
 
 paths:
-  orderManagement/shippingOrders:
+  /orderManagement/shippingOrders:
     post:
       summary: Create Shipping Order
       description: Create a new shipping order.
@@ -76,7 +76,7 @@ paths:
         '500':
           description: Internal Server Error.
 
-  orderManagement/shippingOrders/{orderId}:
+  /orderManagement/shippingOrders/{orderId}:
     parameters:
       - name: orderId
         in: path
