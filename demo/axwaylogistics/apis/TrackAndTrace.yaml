@@ -41,6 +41,8 @@ components:
           description: Last reported location of shipment.
         lastLocationUpdate:
           type: string
+          x-faker: date.past
+          format: "date-time"
           dscription: Date and Time of last location update.
 
   securitySchemes:

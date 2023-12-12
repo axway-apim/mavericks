@@ -41,6 +41,8 @@ components:
           description: Last reported location of shipment.
         lastLocationUpdate:
           type: string
+          x-faker: date.past
+          format: "date-time"
           dscription: Date and Time of last location update.
 
   securitySchemes:
@@ -50,7 +52,7 @@ components:
       name: Authorization
 
 paths:
-  /shipping-orders:
+  orderManagement/shippingOrders:
     post:
       summary: Create Shipping Order
       description: Create a new shipping order.
@@ -74,7 +76,7 @@ paths:
         '500':
           description: Internal Server Error.
 
-  /shipping-orders/{orderId}:
+  orderManagement/shippingOrders/{orderId}:
     parameters:
       - name: orderId
         in: path
