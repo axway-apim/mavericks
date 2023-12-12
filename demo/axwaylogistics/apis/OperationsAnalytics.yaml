@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: Logistics Analytics Data API
+  description: API for retrieving analytics data related to logistics operations.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8098/OperationsAnalytics
+    description: Production server
+
+components:
+  schemas:
+    LogisticsAnalyticsData:
+      type: object
+      properties:
+        operationId:
+          type: string
+          description: Unique identifier for the logistics operation.
+        operationName:
+          type: string
+          description: Name of the logistics operation.
+        startDate:
+          type: string
+          format: date
+          description: Start date of the logistics operation.
+        endDate:
+          type: string
+          format: date
+          description: End date of the logistics operation.
+        metrics:
+          type: object
+          properties:
+            totalShipments:
+              type: integer
+              description: Total number of shipments.
+            onTimeDeliveryRate:
+              type: number
+              format: float
+              description: Percentage of on-time deliveries.
+            averageDeliveryTime:
+              type: number
+              format: float
+              description: Average delivery time in hours.
+
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+paths:
+  /analytics/total-shipments:
+    get:
+      summary: Get Total Shipments Analytics
+      description: Retrieve analytics data for total shipments.
+      responses:
+        '200':
+          description: Analytics data for total shipments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogisticsAnalyticsData'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /analytics/on-time-delivery-rate:
+    get:
+      summary: Get On-Time Delivery Rate Analytics
+      description: Retrieve analytics data for on-time delivery rate.
+      responses:
+        '200':
+          description: Analytics data for on-time delivery rate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogisticsAnalyticsData'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /analytics/average-delivery-time:
+    get:
+      summary: Get Average Delivery Time Analytics
+      description: Retrieve analytics data for average delivery time.
+      responses:
+        '200':
+          description: Analytics data for average delivery time.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogisticsAnalyticsData'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
+
+  /analytics/overall-performance:
+    get:
+      summary: Get Overall Performance Analytics
+      description: Retrieve overall performance analytics data.
+      responses:
+        '200':
+          description: Overall performance analytics data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogisticsAnalyticsData'
+        '401':
+          description: Unauthorized.
+        '500':
+          description: Internal Server Error.
