@@ -27,6 +27,7 @@ components:
             person.fullName:
               firstName: string
               lastName: string
+          format: string
           description: Name of the recipient.
         destinationAddress:
           type: string
