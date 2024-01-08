@@ -26,70 +26,69 @@ services:
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/3DModelingAndAnimation.yaml
     networks:
-      - logistics
+      - computing
   AIEnhancedGraphics:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/AIEnhancedGraphics.yaml
     networks:
-      - logistics
+      - computing
   AIVideoAnalytics:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/AIVideoAnalytics.yaml
     networks:
-      - logistics
+      - computing
   AutonomousVehicle:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/AutonomousVehicle.yaml
     networks:
-      - logistics
+      - computing
   CloudGaming:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/CloudGaming.yaml
     networks:
-      - logistics
+      - computing
   HighPerformanceComputing:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/HighPerformanceComputing.yaml
     networks:
-      - logistics
+      - computing
   NaturalLanguageProcessing:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/NaturalLanguageProcessing.yaml
     networks:
-      - logistics
+      - computing
   RealTimeRayTracing:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/RealTimeRayTracing.yaml
     networks:
-      - logistics
+      - computing
   RoboticsControlAndSimulation:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/RoboticsControlAndSimulation.yaml
     networks:
-      - logistics
+      - computing
   VirtualRealityRendering:
     image: stoplight/prism:4
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/VirtualRealityRendering.yaml
     networks:
-      - logistics 
-
+      - computing 
 networks:
   computing:
