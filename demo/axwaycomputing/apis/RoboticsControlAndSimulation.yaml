@@ -3,6 +3,9 @@ info:
   title: Robotics Control and Simulation API
   version: 1.0.0
   description: API for controlling and simulating robotics, enabling precise movements and task execution.
+servers:
+  - url: http://localhost:8099/RoboticsControlAndSimulation
+    description: Production server
 paths:
   /simulateMovement:
     post:

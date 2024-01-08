@@ -3,6 +3,9 @@ info:
   title: Virtual Reality Rendering API
   version: 1.0.0
   description: API for creating and rendering virtual reality experiences.
+servers:
+  - url: http://localhost:8099/VirtualrealityRendering
+    description: Production server
 paths:
   /createScene:
     post:

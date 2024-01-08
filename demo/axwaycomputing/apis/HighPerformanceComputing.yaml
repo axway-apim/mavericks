@@ -4,6 +4,9 @@ info:
   title: High-Performance Computing API
   version: 1.0.0
   description: API for high-performance computing tasks, providing access to powerful computational resources.
+servers:
+  - url: http://localhost:8099/HighPerformanceComputing
+    description: Production server
 paths:
   /compute:
     post:

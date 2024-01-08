@@ -4,6 +4,9 @@ info:
   title: AI Video Analytics API
   version: 1.0.0
   description: API for real-time video stream analysis using artificial intelligence.
+servers:
+  - url: http://localhost:8099/AIVideoAnalytics
+    description: Production server
 paths:
   /analyze:
     post:

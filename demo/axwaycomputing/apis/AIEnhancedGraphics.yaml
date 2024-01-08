@@ -4,6 +4,9 @@ info:
   title: AI-Enhanced Graphics API
   version: 1.0.0
   description: API for improving graphics rendering using artificial intelligence.
+servers:
+  - url: http://localhost:8099/AIEnhancedGraphics
+    description: Production server
 paths:
   /enhance:
     post:

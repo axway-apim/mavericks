@@ -4,6 +4,9 @@ info:
   title: Natural Language Processing API
   version: 1.0.0
   description: API for language understanding, translation, and text generation using NLP techniques.
+servers:
+  - url: http://localhost:8099/NaturalLanguageProcessing
+    description: Production server
 paths:
   /translate:
     post:

@@ -3,6 +3,10 @@ info:
   title: 3D Modeling and Animation API
   version: 1.0.0
   description: API for creating and manipulating 3D models and animations.
+servers:
+  - url: http://localhost:8099/ModelingAndAnimation
+    description: Production server
+
 paths:
   /createModel:
     post:

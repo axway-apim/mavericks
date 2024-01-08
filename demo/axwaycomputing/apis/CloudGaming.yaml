@@ -4,6 +4,9 @@ info:
   title: Cloud Gaming API
   version: 1.0.0
   description: API for cloud gaming services, allowing users to stream high-quality games.
+servers:
+  - url: http://localhost:8099/CloudGaming
+    description: Production server
 paths:
   /startGame:
     post:

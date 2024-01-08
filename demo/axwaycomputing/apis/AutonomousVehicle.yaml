@@ -3,6 +3,9 @@ info:
   title: Autonomous Vehicle API
   version: 1.0.0
   description: API for interacting with and controlling autonomous vehicle systems.
+servers:
+  - url: http://localhost:8099/AutonomousVehicles
+    description: Production server
 paths:
   /vehicleStatus:
     get:

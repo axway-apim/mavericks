@@ -4,6 +4,9 @@ info:
   title: Real-Time Ray Tracing API
   version: 1.0.0
   description: API for integrating real-time ray tracing in games and simulations.
+servers:
+  - url: http://localhost:8099/RealTimeRayTracing
+    description: Production server
 paths:
   /render:
     post:
