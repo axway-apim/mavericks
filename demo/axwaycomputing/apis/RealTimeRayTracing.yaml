@@ -1,0 +1,71 @@
+
+openapi: 3.0.0
+info:
+  title: Real-Time Ray Tracing API
+  version: 1.0.0
+  description: API for integrating real-time ray tracing in games and simulations.
+paths:
+  /render:
+    post:
+      summary: Render a scene with ray tracing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Scene'
+      responses:
+        '200':
+          description: Successfully rendered scene
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    Scene:
+      type: object
+      properties:
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Object'
+        lights:
+          type: array
+          items:
+            $ref: '#/components/schemas/Light'
+      example:
+        objects: 
+          - type: "sphere"
+            position: { x: 1, y: 2, z: 3 }
+            radius: 5
+        lights:
+          - type: "point"
+            position: { x: 10, y: 15, z: 20 }
+    Object:
+      type: object
+      properties:
+        type:
+          type: string
+        position:
+          $ref: '#/components/schemas/Position'
+        radius:
+          type: number
+          description: "Radius of the object, if applicable."
+    Light:
+      type: object
+      properties:
+        type:
+          type: string
+        position:
+          $ref: '#/components/schemas/Position'
+    Position:
+      type: object
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+        z:
+          type: number

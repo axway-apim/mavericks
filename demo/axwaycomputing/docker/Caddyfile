@@ -1,0 +1,41 @@
+http://localhost
+route /3DModelingAndAnimation/* {
+uri strip_prefix /3DModelingAndAnimation
+reverse_proxy 3DModelingAndAnimation:3000
+}
+route /AIEnhancedGraphics/* {
+uri strip_prefix /AIEnhancedGraphics
+reverse_proxy AIEnhancedGraphics:3000
+}
+route /AIVideoAnalytics/* {
+uri strip_prefix /AIVideoAnalytics
+reverse_proxy AIVideoAnalytics:3000
+}
+route /AutonomousVehicle/* {
+uri strip_prefix /AutonomousVehicle
+reverse_proxy AutonomousVehicle:3000
+}
+route /CloudGaming/* {
+uri strip_prefix /CloudGaming
+reverse_proxy CloudGaming:3000
+}
+route /HighPerformanceComputing/* {
+uri strip_prefix /HighPerformanceComputing
+reverse_proxy HighPerformanceComputing:3000
+}
+route /NaturalLanguageProcessing/* {
+uri strip_prefix /NaturalLanguageProcessing
+reverse_proxy NaturalLanguageProcessing:3000
+}
+route /RealTimeRayTracing/* {
+uri strip_prefix /RealTimeRayTracing
+reverse_proxy RealTimeRayTracing:3000
+}
+route /RoboticsControlAndSimulation/* {
+uri strip_prefix /RoboticsControlAndSimulation
+reverse_proxy RoboticsControlAndSimulation:3000
+}
+route /VirtualRealityRendering/* {
+uri strip_prefix /VirtualRealityRendering
+reverse_proxy VirtualRealityRendering:3000
+}

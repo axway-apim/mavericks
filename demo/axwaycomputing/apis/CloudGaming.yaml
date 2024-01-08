@@ -1,0 +1,81 @@
+
+openapi: 3.0.0
+info:
+  title: Cloud Gaming API
+  version: 1.0.0
+  description: API for cloud gaming services, allowing users to stream high-quality games.
+paths:
+  /startGame:
+    post:
+      summary: Start a game streaming session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameRequest'
+      responses:
+        '200':
+          description: Successfully started game streaming
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameSession'
+
+  /endGame:
+    post:
+      summary: End a game streaming session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionRequest'
+      responses:
+        '200':
+          description: Successfully ended the game session
+
+components:
+  schemas:
+    GameRequest:
+      type: object
+      properties:
+        gameId:
+          type: string
+          description: "Unique identifier of the game."
+        userSettings:
+          $ref: '#/components/schemas/UserSettings'
+      example:
+        gameId: "12345"
+        userSettings:
+          resolution: "1920x1080"
+          quality: "high"
+
+    UserSettings:
+      type: object
+      properties:
+        resolution:
+          type: string
+          description: "Desired screen resolution for the game."
+        quality:
+          type: string
+          description: "Quality setting for the game (e.g., 'low', 'medium', 'high')."
+
+    GameSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: "Unique identifier of the game session."
+        status:
+          type: string
+          description: "Current status of the game session (e.g., 'active', 'pending', 'ended')."
+
+    SessionRequest:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: "Unique identifier of the game session to be ended."
+      example:
+        sessionId: "session123"

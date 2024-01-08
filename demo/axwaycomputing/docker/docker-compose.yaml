@@ -1,0 +1,95 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    container_name: caddy_computing
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8099:80'
+    networks:
+      - computing
+    depends_on:
+      - 3DModelingAndAnimation
+      - AIEnhancedGraphics
+      - AIVideoAnalytics
+      - AutonomousVehicle
+      - CloudGaming
+      - HighPerformanceComputing
+      - NaturalLanguageProcessing
+      - RealTimeRayTracing
+      - RoboticsControlAndSimulation
+      - VirtualRealityRendering
+  3DModelingAndAnimation:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/3DModelingAndAnimation.yaml
+    networks:
+      - logistics
+  AIEnhancedGraphics:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/AIEnhancedGraphics.yaml
+    networks:
+      - logistics
+  AIVideoAnalytics:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/AIVideoAnalytics.yaml
+    networks:
+      - logistics
+  AutonomousVehicle:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/AutonomousVehicle.yaml
+    networks:
+      - logistics
+  CloudGaming:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/CloudGaming.yaml
+    networks:
+      - logistics
+  HighPerformanceComputing:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/HighPerformanceComputing.yaml
+    networks:
+      - logistics
+  NaturalLanguageProcessing:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/NaturalLanguageProcessing.yaml
+    networks:
+      - logistics
+  RealTimeRayTracing:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/RealTimeRayTracing.yaml
+    networks:
+      - logistics
+  RoboticsControlAndSimulation:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/RoboticsControlAndSimulation.yaml
+    networks:
+      - logistics
+  VirtualRealityRendering:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycomputing/apis/VirtualRealityRendering.yaml
+    networks:
+      - logistics 
+
+networks:
+  computing:

@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  title: 3D Modeling and Animation API
+  version: 1.0.0
+  description: API for creating and manipulating 3D models and animations.
+paths:
+  /createModel:
+    post:
+      summary: Create a 3D model
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelRequest'
+      responses:
+        '200':
+          description: Successfully created the 3D model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelResponse'
+
+  /animateModel:
+    post:
+      summary: Animate a 3D model
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnimationRequest'
+      responses:
+        '200':
+          description: Successfully animated the 3D model
+
+components:
+  schemas:
+    ModelRequest:
+      type: object
+      properties:
+        modelId:
+          type: string
+          description: "Unique identifier for the 3D model."
+        geometry:
+          type: string
+          description: "Type of geometry to use (e.g., 'cube', 'sphere')."
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+      example:
+        modelId: "model789"
+        geometry: "sphere"
+        dimensions:
+          radius: 5
+
+    ModelResponse:
+      type: object
+      properties:
+        modelId:
+          type: string
+          description: "Unique identifier of the created model."
+        status:
+          type: string
+          description: "Creation status of the model."
+
+    AnimationRequest:
+      type: object
+      properties:
+        modelId:
+          type: string
+          description: "Identifier of the 3D model to animate."
+        animationType:
+          type: string
+          description: "Type of animation to apply (e.g., 'rotate', 'translate')."
+        parameters:
+          type: object
+          additionalProperties: true
+          description: "Key-value pairs of animation parameters."
+      example:
+        modelId: "model789"
+        animationType: "rotate"
+        parameters:
+          axis: "y"
+          degrees: 180
+
+    Dimensions:
+      type: object
+      properties:
+        radius:
+          type: integer
+          description: "Radius for spherical objects."
+        width:
+          type: integer
+          description: "Width for cuboid objects."
+        height:
+          type: integer
+          description: "Height for cuboid objects."
+        depth:
+          type: integer
+          description: "Depth for cuboid objects."

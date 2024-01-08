@@ -1,0 +1,55 @@
+
+openapi: 3.0.0
+info:
+  title: High-Performance Computing API
+  version: 1.0.0
+  description: API for high-performance computing tasks, providing access to powerful computational resources.
+paths:
+  /compute:
+    post:
+      summary: Execute a high-performance computing task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComputeTask'
+      responses:
+        '200':
+          description: Successfully executed the computing task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComputeResult'
+
+components:
+  schemas:
+    ComputeTask:
+      type: object
+      properties:
+        taskType:
+          type: string
+          description: "Type of the compute task (e.g., 'simulation', 'data_analysis')."
+        parameters:
+          type: object
+          additionalProperties: true
+          description: "Key-value pairs of parameters specific to the task."
+      example:
+        taskType: "simulation"
+        parameters:
+          model: "weather_prediction"
+          duration: "48h"
+
+    ComputeResult:
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: "Unique identifier of the task."
+        status:
+          type: string
+          description: "Status of the compute task (e.g., 'completed', 'in_progress')."
+        output:
+          type: object
+          additionalProperties: true
+          description: "Key-value pairs of results output by the task."

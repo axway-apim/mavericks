@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  title: Virtual Reality Rendering API
+  version: 1.0.0
+  description: API for creating and rendering virtual reality experiences.
+paths:
+  /createScene:
+    post:
+      summary: Create a VR scene
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VRScene'
+      responses:
+        '200':
+          description: Successfully created the VR scene
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SceneResponse'
+
+  /renderScene:
+    post:
+      summary: Render a VR scene
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SceneRequest'
+      responses:
+        '200':
+          description: Successfully rendered the VR scene
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+
+components:
+  schemas:
+    VRScene:
+      type: object
+      properties:
+        sceneId:
+          type: string
+          description: "Unique identifier for the VR scene."
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/VRObject'
+      example:
+        sceneId: "scene456"
+        objects:
+          - type: "cube"
+            position: { x: 0, y: 0, z: 0 }
+            color: "red"
+
+    VRObject:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "Type of object (e.g., 'cube', 'sphere')."
+        position:
+          $ref: '#/components/schemas/Position'
+        color:
+          type: string
+          description: "Color of the object."
+
+    SceneResponse:
+      type: object
+      properties:
+        sceneId:
+          type: string
+          description: "Unique identifier of the created scene."
+        status:
+          type: string
+          description: "Creation status of the scene."
+
+    SceneRequest:
+      type: object
+      properties:
+        sceneId:
+          type: string
+          description: "Unique identifier of the scene to be rendered."
+      example:
+        sceneId: "scene456"
+
+    Position:
+      type: object
+      properties:
+        x:
+          type: integer
+          description: "X-coordinate in a 3D space."
+        y:
+          type: integer
+          description: "Y-coordinate in a 3D space."
+        z:
+          type: integer
+          description: "Z-coordinate in a 3D space."

@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Robotics Control and Simulation API
+  version: 1.0.0
+  description: API for controlling and simulating robotics, enabling precise movements and task execution.
+paths:
+  /simulateMovement:
+    post:
+      summary: Simulate a robotic movement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovementRequest'
+      responses:
+        '200':
+          description: Successfully simulated the robotic movement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResult'
+
+  /executeTask:
+    post:
+      summary: Execute a robotic task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskRequest'
+      responses:
+        '200':
+          description: Successfully executed the task
+
+components:
+  schemas:
+    MovementRequest:
+      type: object
+      properties:
+        robotId:
+          type: string
+          description: "Identifier of the robot."
+        movementSequence:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movement'
+      example:
+        robotId: "robot123"
+        movementSequence:
+          - type: "arm"
+            position: { x: 10, y: 5, z: 15 }
+            duration: "2s"
+
+    Movement:
+      type: object
+      properties:
+        type:
+          type: string
+          description: "Type of movement (e.g., 'arm', 'leg', 'head')."
+        position:
+          $ref: '#/components/schemas/Position'
+        duration:
+          type: string
+          description: "Duration of the movement."
+
+    SimulationResult:
+      type: object
+      properties:
+        simulationId:
+          type: string
+          description: "Unique identifier of the simulation."
+        status:
+          type: string
+          description: "Status of the simulation (e.g., 'completed', 'in_progress')."
+
+    TaskRequest:
+      type: object
+      properties:
+        robotId:
+          type: string
+          description: "Identifier of the robot."
+        taskType:
+          type: string
+          description: "Type of task to execute (e.g., 'assembly', 'inspection')."
+        parameters:
+          type: object
+          additionalProperties: true
+          description: "Key-value pairs of parameters for the task."
+      example:
+        robotId: "robot123"
+        taskType: "assembly"
+        parameters:
+          component: "gearbox"
+
+    Position:
+      type: object
+      properties:
+        x:
+          type: integer
+          description: "X-coordinate in a 3D space."
+        y:
+          type: integer
+          description: "Y-coordinate in a 3D space."
+        z:
+          type: integer
+          description: "Z-coordinate in a 3D space."

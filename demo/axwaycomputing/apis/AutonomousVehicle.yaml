@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Autonomous Vehicle API
+  version: 1.0.0
+  description: API for interacting with and controlling autonomous vehicle systems.
+paths:
+  /vehicleStatus:
+    get:
+      summary: Get the current status of the autonomous vehicle
+      responses:
+        '200':
+          description: Successfully retrieved vehicle status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleStatus'
+
+  /sendCommand:
+    post:
+      summary: Send a command to the autonomous vehicle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleCommand'
+      responses:
+        '200':
+          description: Successfully sent command to the vehicle
+
+components:
+  schemas:
+    VehicleStatus:
+      type: object
+      properties:
+        location:
+          $ref: '#/components/schemas/Location'
+        speed:
+          type: number
+          format: float
+          description: "Current speed of the vehicle in km/h."
+        systemStatus:
+          type: string
+          description: "Overall status of the vehicle's autonomous systems."
+      example:
+        location:
+          latitude: 37.7749
+          longitude: -122.4194
+        speed: 60
+        systemStatus: "operational"
+
+    VehicleCommand:
+      type: object
+      properties:
+        commandType:
+          type: string
+          description: "Type of command to send (e.g., 'navigate', 'stop')."
+        parameters:
+          type: object
+          additionalProperties: true
+          description: "Key-value pairs of parameters for the command."
+      example:
+        commandType: "navigate"
+        parameters:
+          destination:
+            latitude: 37.7749
+            longitude: -122.4194
+
+    Location:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+          description: "Latitude coordinate."
+        longitude:
+          type: number
+          format: float
+          description: "Longitude coordinate."
