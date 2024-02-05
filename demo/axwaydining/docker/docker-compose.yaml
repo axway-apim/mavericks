@@ -1,0 +1,45 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    container_name: caddy_dining
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8100:80'
+    networks:
+      - dining
+    depends_on:
+      - DiningOrder
+      - Menu
+      - Reservations
+      - RestaurantInfo
+  DiningOrder:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/DiningOrder.yaml
+    networks:
+      - dining
+  Menu:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/Menu.yaml
+    networks:
+      - dining
+  Reservations:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/Reservations.yaml
+    networks:
+      - dining
+  RestaurantInfo:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/RestaurantInfo.yaml
+    networks:
+      - dining
+  

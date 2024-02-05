@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Restaurant API
+  version: 1.0.0
+servers:
+  - url: "http://localhost:8100/Menu"
+paths:
+  /menu:
+    get:
+      summary: Get Menu
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MenuItem'
+
+  /menu/{item_id}:
+    get:
+      summary: Get Menu Item by ID
+      parameters:
+        - name: item_id
+          in: path
+          required: true
+          description: ID of the menu item
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+
+components:
+  schemas:
+    MenuItem:
+      type: object
+      properties:
+        item_id:
+          type: integer
+          description: ID of the menu item
+        name:
+          type: string
+          description: Name of the menu item
+        description:
+          type: string
+          description: Description of the menu item
+        price:
+          type: number
+          description: Price of the menu item
+        category:
+          type: string
+          description: Category of the menu item (e.g., appetizer, main course, dessert)

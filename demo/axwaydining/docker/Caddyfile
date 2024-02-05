@@ -1,0 +1,17 @@
+http://localhost
+route /DiningOrder/* {
+uri strip_prefix /DiningOrder
+reverse_proxy DiningOrder:3000
+}
+route /Menu/* {
+uri strip_prefix /Menu
+reverse_proxy Menu:3000
+}
+route /Reservations/* {
+uri strip_prefix /Reservations
+reverse_proxy Reservations:3000
+}
+route /RestaurantInfo/* {
+uri strip_prefix /RestaurantInfo
+reverse_proxy RestaurantInfo:3000
+}

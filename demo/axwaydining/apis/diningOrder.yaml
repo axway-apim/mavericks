@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: Dining Order API
+  version: 1.0.0
+servers:
+  - url: "http://localhost:8100/DiningOrder"
+paths:
+  /orders:
+    post:
+      summary: Create Food Order
+      requestBody:
+        description: Order details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                table_number:
+                  type: integer
+                  description: Table number for the order
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      item_id:
+                        type: integer
+                        description: ID of the menu item
+                      quantity:
+                        type: integer
+                        description: Quantity of the item
+      responses:
+        '201':
+          description: Order created successfully
+
+    put:
+      summary: Modify Food Order
+      parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: ID of the order to modify
+          schema:
+            type: integer
+      requestBody:
+        description: Updated order details
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                table_number:
+                  type: integer
+                  description: Table number for the order
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      item_id:
+                        type: integer
+                        description: ID of the menu item
+                      quantity:
+                        type: integer
+                        description: Updated quantity of the item
+      responses:
+        '200':
+          description: Order modified successfully
+
+components:
+  schemas:
+    MenuItem:
+      type: object
+      properties:
+        item_id:
+          type: integer
+          description: ID of the menu item
+        name:
+          type: string
+          description: Name of the menu item
+        price:
+          type: number
+          description: Price of the menu item
+
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: integer
+          description: ID of the order
+        table_number:
+          type: integer
+          description: Table number for the order
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              item_id:
+                type: integer
+                description: ID of the menu item
+              quantity:
+                type: integer
+                description: Quantity of the item
