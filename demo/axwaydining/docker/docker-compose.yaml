@@ -42,4 +42,6 @@ services:
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/RestaurantInfo.yaml
     networks:
       - dining
+networks:
+  dining:
   
