@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: Restaurant Billing and Payment API
+  version: 1.0.0
+paths:
+  /bill:
+    get:
+      summary: Get Bill
+      parameters:
+        - name: table_number
+          in: query
+          required: true
+          description: Table number for which to retrieve the bill
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillResponse'
+        '404':
+          description: Not Found, no bill found for the provided table number
+
+  /payments:
+    post:
+      summary: Make Payment
+      requestBody:
+        description: Payment details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '200':
+          description: Payment successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: Bad request, invalid payment details
+        '403':
+          description: Forbidden, insufficient funds
+        '404':
+          description: Not Found, order or payment not found
+
+components:
+  schemas:
+    BillResponse:
+      type: object
+      properties:
+        table_number:
+          type: integer
+          description: Table number for the bill
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillItem'
+
+    BillItem:
+      type: object
+      properties:
+        item_name:
+          type: string
+          description: Name of the menu item
+        quantity:
+          type: integer
+          description: Quantity of the item
+        price:
+          type: number
+          description: Price of the item
+        total:
+          type: number
+          description: Total cost for the item
+
+    PaymentRequest:
+      type: object
+      properties:
+        table_number:
+          type: integer
+          description: Table number for the payment
+        amount:
+          type: number
+          description: Amount to be paid
+        payment_method:
+          type: string
+          description: Payment method (e.g., credit card, cash)
+
+    PaymentResponse:
+      type: object
+      properties:
+        payment_id:
+          type: integer
+          description: ID of the payment
+        table_number:
+          type: integer
+          description: Table number for the payment
+        amount:
+          type: number
+          description: Amount paid
+        payment_method:
+          type: string
+          description: Payment method
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the payment
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Error message

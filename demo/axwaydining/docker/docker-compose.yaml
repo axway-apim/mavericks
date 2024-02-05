@@ -14,6 +14,7 @@ services:
       - Menu
       - Reservations
       - RestaurantInfo
+      - BillingAndPayment
   DiningOrder:
     image: stoplight/prism:4
     command: >
@@ -40,6 +41,13 @@ services:
     command: >
       mock -d -p 3000 --host 0.0.0.0
       https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/RestaurantInfo.yaml
+    networks:
+      - dining
+  BillingAndPayment:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaydining/apis/BillingAndPayment.yaml
     networks:
       - dining
 networks:

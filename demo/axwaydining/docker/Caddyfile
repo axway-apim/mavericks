@@ -15,3 +15,7 @@ route /RestaurantInfo/* {
 uri strip_prefix /RestaurantInfo
 reverse_proxy RestaurantInfo:3000
 }
+route /BillingAndPaymet/* {
+uri strip_prefix /BillingAndPaymet
+reverse_proxy BillingAndPaymet:3000
+}
