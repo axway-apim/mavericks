@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Account Information API
+  version: 1.0.0
+  description: API to access account information
+servers:
+  - url: http://localhost:8101/AccountInformation
+    description: Production server
+
+paths:
+  /accounts:
+    get:
+      summary: Get all accounts
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+    post:
+      summary: Create a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "201":
+          description: Account created
+  /accounts/{accountId}:
+    get:
+      summary: Get account by ID
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+    put:
+      summary: Update account information
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: Account updated
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+        customerId:
+          type: integer
+        balance:
+          type: number
+        type:
+          type: string
+        status:
+          type: string

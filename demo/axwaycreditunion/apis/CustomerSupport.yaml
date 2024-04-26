@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Customer Support API
+  version: 1.0.0
+  description: API to provide customer support services
+servers:
+  - url: http://localhost:8101/CustomerSupport
+    description: Production server
+
+paths:
+  /customer-support/{customerId}/queries:
+    get:
+      summary: Get all support queries by customer ID
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupportQuery'
+    post:
+      summary: Submit a support query
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupportQuery'
+      responses:
+        '201':
+          description: Support query submitted
+
+components:
+  schemas:
+    SupportQuery:
+      type: object
+      properties:
+        id:
+          type: integer
+        customerId:
+          type: integer
+        query:
+          type: string
+        status:
+          type: string

@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Account Management API
+  version: 1.0.0
+  description: API to manage account settings and information
+servers:
+  - url: http://localhost:8101/AccountManagement
+    description: Production server
+
+paths:
+  /customers/{customerId}/settings:
+    get:
+      summary: Get account settings by customer ID
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountSettings'
+    put:
+      summary: Update account settings
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountSettings'
+      responses:
+        '200':
+          description: Account settings updated
+
+components:
+  schemas:
+    AccountSettings:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        notifications:
+          type: boolean
+        language:
+          type: string

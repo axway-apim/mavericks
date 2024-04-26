@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: Fraud Detection API
+  version: 1.0.0
+  description: API to detect and prevent fraudulent activities
+servers:
+  - url: http://localhost:8101/FraudDetection
+    description: Production server
+
+paths:
+  /fraud-detection:
+    post:
+      summary: Detect fraudulent activity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '200':
+          description: Fraud detection result
+
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        amount:
+          type: number
+        type:
+          type: string
+        date:
+          type: string

@@ -1,0 +1,106 @@
+version: '3'
+services:
+  proxy:
+    image: caddy
+    container_name: caddy_creditunion
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - '8101:80'
+    networks:
+      - creditunion
+    depends_on:
+      - AccountInformation
+      - AccountManagement
+      - BranchLocator
+      - CardServices
+      - CreditScore
+      - CustomerSupport
+      - DigitalWallet
+      - FraudDetection
+      - InvestmentAndSavings
+      - LoanApplication
+      - OnlineBanking
+      - PaymentAndTransfer
+  AccountInformation:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/AccountInformation.yaml
+    networks:
+      - creditunion
+  AccountManagement:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/AccountManagement.yaml
+    networks:
+      - creditunion
+  BranchLocator:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/BranchLocator.yaml
+    networks:
+      - creditunion
+  CardServices:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/CardServices.yaml
+    networks:
+      - creditunion
+  CreditScore:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/CreditScore.yaml
+    networks:
+      - creditunion
+  CustomerSupport:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/CustomerSupport.yaml
+    networks:
+      - creditunion
+  DigitalWallet:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/DigitalWallet.yaml
+    networks:
+      - creditunion
+  FraudDetection:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/FraudDetection.yaml
+    networks:
+      - creditunion
+  InvestmentAndSavings:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/InvestmentAndSavings.yaml
+    networks:
+      - creditunion
+  LoanApplication:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/LoanApplication.yaml
+    networks:
+      - creditunion
+  OnlineBanking:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/OnlineBanking.yaml
+  PaymentAndTransfer:
+    image: stoplight/prism:4
+    command: >
+      mock -d -p 3000 --host 0.0.0.0
+      https://raw.githubusercontent.com/axway-apim/mavericks/master/demo/axwaycreditunion/apis/PaymentAndTransfer.yaml
+networks:
+  creditunion:

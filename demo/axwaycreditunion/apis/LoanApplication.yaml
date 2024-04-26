@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: Loan Application API
+  version: 1.0.0
+  description: API to manage loan applications
+servers:
+  - url: http://localhost:8101/LoanApplication
+    description: Production server
+
+paths:
+  /loans:
+    get:
+      summary: Get all loan applications
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanApplication'
+    post:
+      summary: Submit a new loan application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanApplication'
+      responses:
+        '201':
+          description: Loan application submitted
+  /loans/{loanId}:
+    get:
+      summary: Get loan application by ID
+      parameters:
+        - name: loanId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanApplication'
+
+components:
+  schemas:
+    LoanApplication:
+      type: object
+      properties:
+        id:
+          type: integer
+        customerId:
+          type: integer
+        amount:
+          type: number
+        status:
+          type: string

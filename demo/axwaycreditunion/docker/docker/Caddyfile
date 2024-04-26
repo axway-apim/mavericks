@@ -1,0 +1,50 @@
+http://localhost
+route /AccountInformation/* {
+uri strip_prefix /AccountInformation
+reverse_proxy AccountInformation:3000
+}
+route /AccountManagement/* {
+uri strip_prefix /AccountManagement
+reverse_proxy AccountManagement:3000
+}
+route /BranchLocator/* {
+uri strip_prefix /BranchLocator
+reverse_proxy BranchLocator:3000
+}
+route /CardServices/* {
+uri strip_prefix /CardServices
+reverse_proxy CardServices:3000
+}
+route /CreditScore/* {
+uri strip_prefix /CreditScore
+reverse_proxy CreditScore:3000
+}
+route /CustomerSupport/* {
+uri strip_prefix /CustomerSupport
+reverse_proxy CustomerSupport:3000
+}
+route /DigitalWallet/* {
+uri strip_prefix /DigitalWallet
+reverse_proxy DigitalWallet:3000
+}
+route /FraudDetection/* {
+uri strip_prefix /FraudDetection
+reverse_proxy FraudDetection:3000
+}
+route /InvestmentAndSavings/* {
+uri strip_prefix /InvestmentAndSavings
+reverse_proxy InvestmentAndSavings:3000
+}
+route /LoanApplication/* {
+uri strip_prefix /LoanApplication
+reverse_proxy LoanApplication:3000
+}
+route /OnlineBanking/* {
+uri strip_prefix /OnlineBanking
+reverse_proxy OnlineBanking:3000
+}
+route /PaymentAndTransfer/* {
+uri strip_prefix /PaymentAndTransfer
+reverse_proxy PaymentAndTransfer:3000
+}
+

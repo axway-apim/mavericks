@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Digital Wallet API
+  version: 1.0.0
+  description: API to integrate credit union accounts with digital wallets
+servers:
+  - url: http://localhost:8101/DigitalWallet
+    description: Production server
+
+paths:
+  /digital-wallets/{customerId}/payments:
+    get:
+      summary: Get all payments made using digital wallet
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+    post:
+      summary: Make a payment using digital wallet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '201':
+          description: Payment made successfully
+
+components:
+  schemas:
+    Payment:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        amount:
+          type: number
+        payee:
+          type: string
+        status:
+          type: string

@@ -1,0 +1,65 @@
+openapi: 3.0.0
+info:
+  title: Card Services API
+  version: 1.0.0
+  description: API to manage debit and credit cards
+servers:
+  - url: http://localhost:8101/CardServices
+    description: Production server
+
+paths:
+  /cards:
+    get:
+      summary: Get all cards
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Card'
+    post:
+      summary: Activate a new card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '201':
+          description: Card activated
+  /cards/{cardId}:
+    put:
+      summary: Update card status
+      parameters:
+        - name: cardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '200':
+          description: Card status updated
+
+components:
+  schemas:
+    Card:
+      type: object
+      properties:
+        id:
+          type: integer
+        customerId:
+          type: integer
+        type:
+          type: string
+        status:
+          type: string

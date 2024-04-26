@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Payment and Transfer API
+  version: 1.0.0
+  description: API to initiate and manage payments and transfers
+servers:
+  - url: http://localhost:8101/PaymentAndTransfers
+    description: Production server
+
+paths:
+  /payments:
+    get:
+      summary: Get all payments
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+    post:
+      summary: Initiate a new payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '201':
+          description: Payment initiated
+  /transfers:
+    get:
+      summary: Get all transfers
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transfer'
+    post:
+      summary: Initiate a new transfer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transfer'
+      responses:
+        '201':
+          description: Transfer initiated
+
+components:
+  schemas:
+    Payment:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        amount:
+          type: number
+        payee:
+          type: string
+        status:
+          type: string
+    Transfer:
+      type: object
+      properties:
+        id:
+          type: integer
+        fromAccountId:
+          type: integer
+        toAccountId:
+          type: integer
+        amount:
+          type: number
+        status:
+          type: string

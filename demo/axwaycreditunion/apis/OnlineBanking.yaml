@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: Online Banking API
+  version: 1.0.0
+  description: API to provide online banking services
+servers:
+  - url: http://localhost:8101/OnlineServices
+    description: Production server
+
+paths:
+  /online-banking/{customerId}/transactions:
+    get:
+      summary: Get transaction history by customer ID
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        amount:
+          type: number
+        type:
+          type: string
+        date:
+          type: string

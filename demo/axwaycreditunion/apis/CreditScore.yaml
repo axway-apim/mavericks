@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: Credit Score API
+  version: 1.0.0
+  description: API to access credit scores and reports
+servers:
+  - url: http://localhost:8101/CreditScore
+    description: Production server
+
+paths:
+  /credit-scores:
+    get:
+      summary: Get all credit scores
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreditScore'
+  /credit-scores/{customerId}:
+    get:
+      summary: Get credit score by customer ID
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditScore'
+
+components:
+  schemas:
+    CreditScore:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        score:
+          type: integer
+        report:
+          type: string

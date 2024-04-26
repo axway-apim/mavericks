@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: Investment and Savings API
+  version: 1.0.0
+  description: API to manage investment options and savings accounts
+servers:
+  - url: http://localhost:8101/InvestmentAndSavings
+    description: Production server
+
+paths:
+  /investments:
+    get:
+      summary: Get all investment options
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvestmentOption'
+
+components:
+  schemas:
+    InvestmentOption:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        rate:
+          type: number
